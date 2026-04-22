@@ -1,4 +1,4 @@
-# Spectrogram Video Generator — README
+# SpectraReel — README
 
 ## Overview
 A Shiny app that turns audio files into customizable **MP4 spectrogram
