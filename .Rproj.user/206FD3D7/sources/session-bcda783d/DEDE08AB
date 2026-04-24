@@ -1,0 +1,26 @@
+{
+    "id": "DEDE08AB",
+    "path": "~/OSA/SpectraReel/www/audio_player.js",
+    "project_path": "www/audio_player.js",
+    "type": "js",
+    "hash": "0",
+    "contents": "",
+    "dirty": false,
+    "created": 1776742808144.0,
+    "source_on_save": false,
+    "relative_order": 5,
+    "properties": {
+        "source_window_id": "",
+        "Source": "Source",
+        "cursorPosition": "17,31",
+        "scrollLine": "0"
+    },
+    "folds": "",
+    "lastKnownWriteTime": 1776744281,
+    "encoding": "UTF-8",
+    "collab_server": "",
+    "source_window": "",
+    "last_content_update": 1776744281642,
+    "read_only": false,
+    "read_only_alternatives": []
+}

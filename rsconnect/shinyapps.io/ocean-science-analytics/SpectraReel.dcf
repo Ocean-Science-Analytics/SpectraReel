@@ -1,0 +1,13 @@
+name: SpectraReel
+title: SpectraReel
+username: ocean-science-analytics
+account: ocean-science-analytics
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 17187669
+bundleId: 11902677
+url: https://ocean-science-analytics.shinyapps.io/SpectraReel/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: archive/app(2).R|archive/app(3).R|Audio/HYDBBA103OOI_170128-154000_01.wav|Audio/SP_10818_20251030-064000_Mn01.wav

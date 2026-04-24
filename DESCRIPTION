@@ -1,0 +1,14 @@
+Package: SpectrogramVideoGenerator
+Title: Spectrogram Video Generator
+Version: 1.0.0
+Description: Shiny app to render FFT spectrogram MP4 videos from audio files.
+Imports:
+    shiny,
+    bslib,
+    shinyjs,
+    shinyWidgets,
+    av,
+    tuneR,
+    seewave,
+    viridisLite,
+    zip
