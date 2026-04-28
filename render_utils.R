@@ -318,25 +318,33 @@ render_spectrogram_video <- function(audio_file, output_file, fname,
     if (!is.null(progress_cb))
       progress_cb(i / n_frames, sprintf("frame %d / %d", i, n_frames))
   }
-
+  
   # 5 -- Encode
-  # av_encode_video uses AAC which only supports up to 96kHz.
-  # If source is higher (e.g. 192kHz), resample to 96kHz for the MP4 audio
-  # track only -- the spectrogram was already computed from the full-rate audio.
+  # AAC codec only supports specific sample rates.
+  # Snap to the nearest valid rate to avoid "avcodec_open2 (audio): Invalid argument".
+  aac_valid_rates <- c(8000L, 11025L, 12000L, 16000L, 22050L, 24000L,
+                       32000L, 44100L, 48000L, 96000L)
   aac_max <- 96000L
+  
   src_sr <- tryCatch({
     as.integer(av::av_media_info(audio_file)$audio$sample_rate[1])
   }, error = function(e) 44100L)
-
-  if (!is.null(src_sr) && !is.na(src_sr) && src_sr > aac_max) {
+  
+  if (is.null(src_sr) || is.na(src_sr)) src_sr <- 44100L
+  
+  # Find the nearest valid AAC sample rate (cap at 96kHz)
+  capped_sr <- min(src_sr, aac_max)
+  target_sr <- aac_valid_rates[which.min(abs(aac_valid_rates - capped_sr))]
+  
+  if (target_sr != src_sr) {
     audio_for_encode <- tempfile(fileext = ".wav")
     on.exit(unlink(audio_for_encode), add = TRUE)
     av::av_audio_convert(audio_file, audio_for_encode,
-                         format = "wav", sample_rate = aac_max)
+                         format = "wav", sample_rate = target_sr)
   } else {
     audio_for_encode <- audio_file
   }
-
+  
   av_encode_video(
     input     = fnames_png,
     output    = output_file,
