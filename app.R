@@ -123,7 +123,10 @@ label,.control-label{color:#3E5468!important;font-size:.79rem!important;font-wei
 .btn-render:active{transform:translateY(0)!important}
 .btn-dl,.sv-dl-btn{background:linear-gradient(135deg,var(--osa-blue),var(--osa-sea))!important;
   border:none!important;color:#fff!important;font-weight:700!important;
-  padding:.65rem 1.8rem!important;border-radius:8px!important;font-size:.9rem!important;margin-top:.5rem!important}
+  padding:.65rem 1.8rem!important;border-radius:8px!important;font-size:.9rem!important;margin-top:.5rem!important;
+  letter-spacing:.02em;transition:box-shadow .15s,transform .1s,filter .15s!important}
+.btn-dl:hover,.sv-dl-btn:hover{filter:brightness(1.06);box-shadow:0 0 0 3px rgba(55,150,204,.25),0 6px 18px rgba(45,93,168,.3)!important;transform:translateY(-1px)!important}
+.btn-dl:active,.sv-dl-btn:active{transform:translateY(0)!important}
 
 /* ---- Status badges ---- */
 .badge-idle,.badge-running,.badge-done,.badge-error,.badge-preview{padding:.28rem .85rem;border-radius:20px;font-size:.73rem;font-weight:600;border:1px solid}
@@ -139,7 +142,7 @@ label,.control-label{color:#3E5468!important;font-size:.79rem!important;font-wei
   gap:1rem;transition:all .35s ease;box-sizing:border-box;padding:1.5rem}
 #sv-output-box.state-idle{display:none}
 #sv-output-box.state-rendering{background:linear-gradient(160deg,#EAF3FA 0%,#fff 70%);border:1px solid #9CC4E4}
-#sv-output-box.state-done{background:linear-gradient(160deg,#E7F6EF 0%,#fff 70%);border:1px solid #9ED6BC}
+#sv-output-box.state-done{background:linear-gradient(160deg,#BFE6D1 0%,#fff 70%);border:1px solid #9ED6BC}
 #sv-output-box.state-error{background:linear-gradient(160deg,#FDECEC 0%,#fff 70%);border:1px solid #F3B5B0}
 .sv-box-spinner{width:52px;height:52px;border:4px solid rgba(55,150,204,.2);
   border-top-color:var(--osa-blue);border-radius:50%;animation:sv-spin .8s linear infinite}
@@ -160,7 +163,7 @@ label,.control-label{color:#3E5468!important;font-size:.79rem!important;font-wei
 #playhead-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
 #scrub_slider .irs--shiny .irs-bar{background:var(--osa-sea);border-color:var(--osa-sea)}
 #scrub_slider .irs--shiny .irs-single{background:var(--osa-sea)}
-#scrub_slider .irs--shiny .irs-handle{border-color:var(--osa-sea);background:#fff}
+#scrub_slider .irs--shiny .irs-handle{border-color:var(--osa-sea);background:#C9CED4}
 .time-display{font-family:'Courier New',monospace;font-size:1.05rem;font-weight:700;
   color:var(--osa-blue);letter-spacing:.05em;min-width:6rem;text-align:center}
 
@@ -467,7 +470,7 @@ ui <- fluidPage(
           style="display:none;flex-direction:column;align-items:center;gap:.8rem;width:100%",
           div(class="sv-checkmark", HTML("&#10003;")),
           div(class="sv-box-title", style="color:var(--success)", "MP4 Ready!"),
-          div(class="sv-box-sub", "Your spectrogram video is ready to download."),
+          div(class="sv-box-sub", style="font-size:1rem", "Your spectrogram video is ready to download."),
           uiOutput("dl_button_ui")
         ),
 
@@ -475,7 +478,7 @@ ui <- fluidPage(
         div(id="sv-box-error",
           style="display:none;flex-direction:column;align-items:center;gap:.8rem;width:100%",
           div(style="font-size:2.5rem", HTML("&#9888;")),
-          div(class="sv-box-title", style="color:#B42318", "Render Failed"),
+          div(class="sv-box-title", style="color:#B42318;font-size:1.25rem", "Render Failed"),
           uiOutput("error_msg_ui")
         )
       )
@@ -953,7 +956,7 @@ Options      : %s",
 
   output$error_msg_ui <- renderUI({
     req(rv$error_msg)
-    tags$p(style="color:#B42318;font-size:.75rem;text-align:center;word-break:break-word",
+    tags$p(style="color:#B42318;font-size:1rem;text-align:center;word-break:break-word",
            rv$error_msg)
   })
 
