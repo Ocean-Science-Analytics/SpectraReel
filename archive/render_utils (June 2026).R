@@ -1,4 +1,4 @@
-# ============================================================
+?# ============================================================
 #  render_utils.R  --  Spectrogram video rendering engine
 #  Used by app.R; sourced automatically.
 # ============================================================
@@ -12,8 +12,6 @@ library(grDevices)
 # -- Color palettes -------------------------------------------------------------
 get_palette <- function(name, n = 512) {
   switch(name,
-    osa      = colorRampPalette(c("#000000","#0B1F3A","#1E3F6E","#2D5DA8",
-                                   "#3796CC","#62ADD7","#99D0E5","#ffffff"))(n),   # OSA Ocean
     viridis  = viridis(n),
     magma    = magma(n),
     plasma   = plasma(n),

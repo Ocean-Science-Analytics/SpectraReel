@@ -18,213 +18,144 @@ source("render_utils.R")
 
 # -- CSS ----------------------------------------------------------------------
 css <- "
-/* ===== Ocean Science Analytics theme ===================================== */
 :root {
-  --osa-navy:#1E3F6E;   --osa-blue:#2D5DA8;  --osa-steel:#3A74A6;
-  --osa-sea:#3796CC;    --osa-sky:#62ADD7;   --osa-foam:#99D0E5;
-  --bg-page:#F3F7FA;    --bg-card:#FFFFFF;   --bg-input:#FFFFFF;
-  --border:#D6E2EC;     --border-strong:#B9CCDC;
-  --text:#1B2B3A;       --muted:#5F7385;     --success:#2E9E6B;
-  --accent:var(--osa-blue); --accent2:var(--osa-sea);
+  --bg-deep:#09090b; --bg-card:#18181b; --bg-input:#27272a;
+  --border:#3f3f46;  --accent:#8b5cf6;  --accent2:#06b6d4;
+  --text:#e4e4e7;    --muted:#71717a;   --success:#22c55e;
 }
-body,.shiny-server-status{background:var(--bg-page)!important;color:var(--text)}
+body,.shiny-server-status{background:var(--bg-deep)!important;color:var(--text)}
 .container-fluid{max-width:1500px;padding:0 1.2rem}
-h1,h2,h3,.osa-title{font-family:'Questrial','Century Gothic','Inter',sans-serif}
-
-/* ---- Header band with subtle wave ---- */
-.osa-header{position:relative;overflow:hidden;margin:1.1rem 0 1.1rem;border-radius:14px;
-  background:linear-gradient(120deg,var(--osa-navy) 0%,var(--osa-blue) 55%,var(--osa-steel) 100%);
-  padding:1.05rem 1.5rem 2.1rem;color:#fff;box-shadow:0 6px 22px rgba(30,63,110,.18)}
-.osa-header-inner{position:relative;z-index:2;display:flex;align-items:center;gap:1.1rem}
-.osa-header img{height:44px;width:auto;display:block}
-.osa-header .osa-divider{width:1px;align-self:stretch;background:rgba(255,255,255,.35)}
-.osa-title{color:#fff;font-size:1.65rem;font-weight:400;letter-spacing:.02em;margin:0;line-height:1.1}
-.osa-sub{color:rgba(255,255,255,.82);font-size:.84rem;margin:.2rem 0 0}
-.osa-wave{position:absolute;left:0;bottom:0;width:200%;height:46px;z-index:1;pointer-events:none;
-  animation:osa-drift 48s linear infinite}
-.osa-wave path{vector-effect:non-scaling-stroke}
-@keyframes osa-drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.osa-wave{animation:none}}
-
-/* ---- Footer wave ---- */
-.osa-footer{position:relative;margin:1.6rem 0 0;padding:1.4rem 0 1.1rem;text-align:center;
-  color:var(--muted);font-size:.74rem;overflow:hidden}
-.osa-footer svg{position:absolute;left:0;top:0;width:100%;height:28px;opacity:.55}
-.osa-footer a{color:var(--osa-blue);text-decoration:none}
-
-/* ---- Panels & cards ---- */
 .sidebar-panel{background:var(--bg-card)!important;border:1px solid var(--border)!important;
-  border-radius:12px;padding:1.2rem!important;height:fit-content;
-  box-shadow:0 1px 3px rgba(30,63,110,.06)}
+  border-radius:12px;padding:1.2rem!important;height:fit-content}
 .main-panel{padding-left:1.2rem}
-.sv-card{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;
-  padding:1.1rem 1.3rem;margin-bottom:.9rem;box-shadow:0 1px 3px rgba(30,63,110,.06)}
-.sec-head{color:var(--osa-blue);font-size:.68rem;font-weight:700;letter-spacing:.11em;
-  text-transform:uppercase;margin:.9rem 0 .6rem;display:flex;align-items:center;gap:.45rem}
-.sec-head::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border-strong),transparent)}
-.sec-head .ico{color:var(--osa-sea)}
-
-/* ---- Inputs ---- */
+.sv-card{background:var(--bg-card);border:1px solid var(--border);border-radius:10px;
+  padding:1.1rem 1.3rem;margin-bottom:.9rem}
+.sec-head{color:var(--accent2);font-size:.67rem;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;margin:.9rem 0 .5rem;display:flex;align-items:center;gap:.4rem}
+.sec-head::after{content:'';flex:1;height:1px;background:var(--border)}
 .form-control,.selectize-input,.selectize-dropdown{background:var(--bg-input)!important;
-  color:var(--text)!important;border-color:var(--border-strong)!important;border-radius:6px!important;box-shadow:none!important}
-.form-control:focus,.selectize-input.focus{border-color:var(--osa-sea)!important;
-  box-shadow:0 0 0 3px rgba(55,150,204,.18)!important}
-.selectize-dropdown-content .option{color:var(--text);background:#fff}
-.selectize-dropdown-content .option.active,.selectize-dropdown-content .option:hover{background:#E8F2F9;color:var(--osa-navy)}
-label,.control-label{color:#3E5468!important;font-size:.79rem!important;font-weight:600!important}
-.form-group{margin-bottom:.85rem}
-.input-group .btn{background:var(--osa-steel)!important;border-color:var(--osa-steel)!important;color:#fff!important}
-.progress{background:#E3ECF3;border-radius:20px;height:7px}
-.progress-bar{background:linear-gradient(90deg,var(--osa-blue),var(--osa-sky));border-radius:20px}
+  color:var(--text)!important;border-color:var(--border)!important;border-radius:6px!important}
+.selectize-dropdown-content .option{color:var(--text);background:var(--bg-input)}
+.selectize-dropdown-content .option:hover{background:#3f3f46}
+label{color:#a1a1aa!important;font-size:.79rem!important;font-weight:500!important}
+.irs--shiny .irs-bar{background:var(--accent);border-color:var(--accent)}
+.irs--shiny .irs-single,.irs--shiny .irs-from,.irs--shiny .irs-to{background:var(--accent);font-size:.7rem}
+.irs--shiny .irs-handle{border-color:var(--accent)}
+.irs--shiny .irs-line{background:var(--border)}
 
-/* Sliders */
-.irs--shiny .irs-bar{background:var(--osa-blue);border-color:var(--osa-blue)}
-.irs--shiny .irs-single,.irs--shiny .irs-from,.irs--shiny .irs-to{background:var(--osa-blue);font-size:.7rem}
-.irs--shiny .irs-single:before,.irs--shiny .irs-from:before,.irs--shiny .irs-to:before{border-top-color:var(--osa-blue)}
-.irs--shiny .irs-handle{border-color:var(--osa-blue)}
-.irs--shiny .irs-line{background:#E3ECF3;border-color:#E3ECF3}
-.irs--shiny .irs-min,.irs--shiny .irs-max,.irs--shiny .irs-grid-text{color:var(--muted);background:transparent}
-
-/* ---- FIX: checkbox overlapping its box/label ----
-   Shiny's BS3-compat CSS absolutely positions the checkbox with a negative
-   margin, which pushes it over the panel edge / label text under BS5.  */
-.shiny-input-checkboxgroup .checkbox,.shiny-input-container .checkbox{margin:.1rem 0 .35rem;padding:0}
-.shiny-input-checkboxgroup .checkbox label,.shiny-input-container .checkbox label{
-  display:flex!important;align-items:center;gap:.55rem;padding-left:0!important;margin:0;
-  cursor:pointer;color:var(--text)!important;font-weight:500!important;font-size:.82rem!important}
-.shiny-input-checkboxgroup .checkbox input[type=checkbox],.shiny-input-container .checkbox input[type=checkbox]{
-  position:static!important;margin:0!important;flex:0 0 auto;width:1rem;height:1rem;
-  accent-color:var(--osa-blue);cursor:pointer}
-
-/* Smoothing switch (prettySwitch) */
-.pretty{margin-right:0}
-.pretty .state label{color:var(--text)!important;font-weight:600!important;font-size:.82rem!important}
-.pretty.p-switch.p-fill input:checked~.state.p-primary:before{background-color:var(--osa-blue)!important;border-color:var(--osa-blue)!important}
-.pretty.p-switch input:checked~.state.p-primary:before{border-color:var(--osa-blue)!important}
-
-/* Playhead colour row: swatch + hex field aligned on one line */
-.ph-row{display:flex;align-items:center;gap:6px}
-.ph-row .form-group{margin:0!important;flex:1}
-.ph-row input[type=color]{width:38px;height:36px;padding:2px;border-radius:6px;
-  border:1px solid var(--border-strong);background:#fff;cursor:pointer;flex:0 0 auto}
-
-/* ---- Buttons ---- */
-.btn-transport{background:#fff!important;border:1px solid var(--border-strong)!important;
-  color:var(--osa-navy)!important;border-radius:8px!important;padding:.4rem .9rem!important;
+/* Transport buttons */
+.btn-transport{background:var(--bg-input)!important;border:1px solid var(--border)!important;
+  color:var(--text)!important;border-radius:8px!important;padding:.4rem .9rem!important;
   font-size:1rem!important;line-height:1;transition:all .15s}
-.btn-transport:hover{background:#EAF3FA!important;border-color:var(--osa-sea)!important}
-.btn-play{background:var(--osa-blue)!important;border-color:var(--osa-blue)!important;color:#fff!important}
-.btn-play:hover{background:var(--osa-navy)!important}
-.btn-render{background:linear-gradient(135deg,var(--osa-blue),var(--osa-sea))!important;
+.btn-transport:hover{background:#3f3f46!important;border-color:var(--accent)!important}
+.btn-play{background:var(--accent)!important;border-color:var(--accent)!important;color:#fff!important}
+.btn-play:hover{opacity:.85!important}
+
+/* Render buttons */
+.btn-render{background:linear-gradient(135deg,var(--accent),#7c3aed)!important;
   border:none!important;color:#fff!important;font-weight:700!important;width:100%!important;
-  padding:.65rem!important;border-radius:8px!important;font-size:.9rem!important;margin-bottom:.45rem!important;
-  letter-spacing:.02em;transition:box-shadow .15s,transform .1s,filter .15s!important}
-.btn-render:hover{filter:brightness(1.06);box-shadow:0 0 0 3px rgba(55,150,204,.25),0 6px 18px rgba(45,93,168,.3)!important;transform:translateY(-1px)!important}
-.btn-render:active{transform:translateY(0)!important}
-.btn-dl,.sv-dl-btn{background:linear-gradient(135deg,var(--osa-blue),var(--osa-sea))!important;
+  padding:.6rem!important;border-radius:8px!important;font-size:.88rem!important;margin-bottom:.45rem!important;
+  transition:opacity .15s,box-shadow .15s,transform .1s!important}
+.btn-render:hover{opacity:.88!important;box-shadow:0 0 0 3px rgba(139,92,246,.35),0 4px 18px rgba(124,58,237,.45)!important;transform:translateY(-1px)!important}
+.btn-render:active{opacity:1!important;transform:translateY(0)!important}
+.btn-batch{background:linear-gradient(135deg,#059669,var(--success))!important;
+  border:none!important;color:#fff!important;font-weight:700!important;width:100%!important;
+  padding:.6rem!important;border-radius:8px!important;font-size:.88rem!important;margin-bottom:.45rem!important}
+.btn-dl{background:linear-gradient(135deg,#0891b2,var(--accent2))!important;
   border:none!important;color:#fff!important;font-weight:700!important;
-  padding:.65rem 1.8rem!important;border-radius:8px!important;font-size:.9rem!important;margin-top:.5rem!important}
+  padding:.5rem 1.3rem!important;border-radius:8px!important;font-size:.83rem!important}
 
-/* ---- Status badges ---- */
-.badge-idle,.badge-running,.badge-done,.badge-error,.badge-preview{padding:.28rem .85rem;border-radius:20px;font-size:.73rem;font-weight:600;border:1px solid}
-.badge-idle{background:#EEF3F7;color:var(--muted);border-color:var(--border)}
-.badge-running{background:#E6F1FA;color:var(--osa-blue);border-color:#9CC4E4}
-.badge-done{background:#E7F6EF;color:#1F7A51;border-color:#9ED6BC}
-.badge-error{background:#FDECEC;color:#B42318;border-color:#F3B5B0}
-.badge-preview{background:#FFF6E5;color:#9A5B00;border-color:#F2CF8C}
+/* Badges */
+.badge-idle{background:#27272a;color:#71717a;border:1px solid #3f3f46;padding:.28rem .85rem;border-radius:20px;font-size:.73rem;font-weight:600}
+.badge-running{background:#1e1b4b;color:#a5b4fc;border:1px solid #4338ca;padding:.28rem .85rem;border-radius:20px;font-size:.73rem;font-weight:600}
+.badge-done{background:#052e16;color:#86efac;border:1px solid #16a34a;padding:.28rem .85rem;border-radius:20px;font-size:.73rem;font-weight:600}
+.badge-error{background:#450a0a;color:#fca5a5;border:1px solid #b91c1c;padding:.28rem .85rem;border-radius:20px;font-size:.73rem;font-weight:600}
+.badge-preview{background:#1c1917;color:#fcd34d;border:1px solid #92400e;padding:.28rem .85rem;border-radius:20px;font-size:.73rem;font-weight:600}
 
-/* ---- Render / download box ---- */
-#sv-output-box{width:100%;min-height:270px;border-radius:12px;position:relative;overflow:hidden;
+/* Progress */
+.progress{background:var(--bg-input);border-radius:20px;height:7px}
+.progress-bar{background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:20px}
+
+/* Scrub slider -- make it look like a timeline */
+#scrub_slider .irs--shiny .irs-bar{background:var(--accent2);border-color:var(--accent2)}
+#scrub_slider .irs--shiny .irs-single{background:var(--accent2)}
+#scrub_slider .irs--shiny .irs-handle{border-color:var(--accent2);background:#fff}
+
+/* Square render/download box */
+#sv-output-box{width:100%;min-height:270px;border-radius:10px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:1rem;transition:all .35s ease;box-sizing:border-box;padding:1.5rem}
 #sv-output-box.state-idle{display:none}
-#sv-output-box.state-rendering{background:linear-gradient(160deg,#EAF3FA 0%,#fff 70%);border:1px solid #9CC4E4}
-#sv-output-box.state-done{background:linear-gradient(160deg,#E7F6EF 0%,#fff 70%);border:1px solid #9ED6BC}
-#sv-output-box.state-error{background:linear-gradient(160deg,#FDECEC 0%,#fff 70%);border:1px solid #F3B5B0}
-.sv-box-spinner{width:52px;height:52px;border:4px solid rgba(55,150,204,.2);
-  border-top-color:var(--osa-blue);border-radius:50%;animation:sv-spin .8s linear infinite}
+#sv-output-box.state-rendering{
+  background:linear-gradient(135deg,#1a1033 0%,#18181b 100%);
+  border:1px solid rgba(139,92,246,.4)}
+#sv-output-box.state-done{
+  background:linear-gradient(135deg,#052e16 0%,#18181b 100%);
+  border:1px solid rgba(34,197,94,.4)}
+#sv-output-box.state-error{
+  background:linear-gradient(135deg,#2d0a0a 0%,#18181b 100%);
+  border:1px solid rgba(185,28,28,.4)}
+.sv-box-spinner{width:52px;height:52px;border:4px solid rgba(139,92,246,.2);
+  border-top-color:var(--accent);border-radius:50%;
+  animation:sv-spin .8s linear infinite}
 @keyframes sv-spin{to{transform:rotate(360deg)}}
-@keyframes sv-pulse{0%,100%{opacity:1}50%{opacity:.45}}
+@keyframes sv-pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .sv-box-title{font-size:1rem;font-weight:700;letter-spacing:.04em;text-align:center}
-.sv-box-sub{font-size:.76rem;color:var(--muted);text-align:center;line-height:1.5}
+.sv-box-sub{font-size:.75rem;color:var(--muted);text-align:center;line-height:1.5}
 .sv-box-pct{font-family:'Courier New',monospace;font-size:2rem;font-weight:700;
-  color:var(--osa-blue);animation:sv-pulse 1.8s ease-in-out infinite}
-.sv-box-progress{width:80%;height:6px;background:#E3ECF3;border-radius:20px;overflow:hidden}
+  color:var(--accent);animation:sv-pulse 1.8s ease-in-out infinite}
+.sv-box-progress{width:80%;height:6px;background:var(--bg-input);border-radius:20px;overflow:hidden}
 .sv-box-progress-bar{height:100%;width:0%;border-radius:20px;
-  background:linear-gradient(90deg,var(--osa-blue),var(--osa-sky));transition:width .3s ease}
+  background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s ease}
+.sv-dl-btn{background:linear-gradient(135deg,#0891b2,var(--accent2))!important;
+  border:none!important;color:#fff!important;font-weight:700!important;
+  padding:.65rem 1.8rem!important;border-radius:8px!important;font-size:.9rem!important;
+  margin-top:.5rem!important}
 .sv-checkmark{font-size:2.8rem;color:var(--success)}
 
-/* ---- Preview ---- */
+/* Preview plot container */
+.preview-wrap{position:relative;background:#000;border-radius:8px;overflow:hidden}
+.preview-wrap .shiny-plot-output{display:block}
+
+/* Canvas playhead overlay */
 .preview-wrap{position:relative;background:#000;border-radius:8px;overflow:hidden}
 .preview-wrap .shiny-plot-output{display:block}
 #playhead-canvas{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
-#scrub_slider .irs--shiny .irs-bar{background:var(--osa-sea);border-color:var(--osa-sea)}
-#scrub_slider .irs--shiny .irs-single{background:var(--osa-sea)}
-#scrub_slider .irs--shiny .irs-handle{border-color:var(--osa-sea);background:#fff}
-.time-display{font-family:'Courier New',monospace;font-size:1.05rem;font-weight:700;
-  color:var(--osa-blue);letter-spacing:.05em;min-width:6rem;text-align:center}
 
-/* ---- Settings summary / tables ---- */
-pre.shiny-text-output,#settings_summary{background:#F5F9FC!important;color:#24384B!important;
-  border:1px solid var(--border)!important;border-radius:8px;font-size:.76rem;line-height:1.55;margin:0;padding:.75rem .95rem!important}
+/* Time display */
+.time-display{font-family:'Courier New',monospace;font-size:1.05rem;font-weight:700;
+  color:var(--accent2);letter-spacing:.05em;min-width:6rem;text-align:center}
+
+/* File table */
 .table{color:var(--text)!important}
 .table th{color:var(--muted)!important;font-size:.73rem;text-transform:uppercase;border-color:var(--border)!important}
 .table td{border-color:var(--border)!important;font-size:.83rem}
-.file-list-scroll{max-height:180px;overflow-y:auto}
-hr.sv-hr{border-color:var(--border);opacity:1;margin:.8rem 0}
-.hint{color:var(--muted);font-size:.7rem;line-height:1.4}
-"
 
-# -- Subtle wave graphics (OSA brand blues) -----------------------------------
-# Two copies of the same wave sit side by side so the slow drift loops seamlessly.
-wave_path <- function(y, amp, color, opacity, sw) {
-  d <- sprintf("M0 %d C 150 %d, 350 %d, 500 %d S 850 %d, 1000 %d S 1350 %d, 1500 %d S 1850 %d, 2000 %d",
-               y, y-amp, y+amp, y, y-amp, y, y+amp, y, y-amp, y)
-  tags$path(d=d, fill="none", stroke=color, `stroke-opacity`=opacity, `stroke-width`=sw,
-            `stroke-linecap`="round")
-}
-header_wave <- tags$svg(class="osa-wave", viewBox="0 0 2000 46", preserveAspectRatio="none",
-  `aria-hidden`="true",
-  wave_path(14, 10, "#99D0E5", .55, 5),
-  wave_path(24, 12, "#62ADD7", .45, 4),
-  wave_path(34, 9,  "#3796CC", .50, 3.5),
-  wave_path(42, 7,  "#ffffff", .18, 2)
-)
-footer_wave <- tags$svg(viewBox="0 0 2000 28", preserveAspectRatio="none", `aria-hidden`="true",
-  wave_path(8,  6, "#99D0E5", .9, 3),
-  wave_path(15, 7, "#62ADD7", .8, 2.5),
-  wave_path(21, 5, "#2D5DA8", .7, 2)
-)
+.app-title h2{color:var(--text);font-size:1.5rem;font-weight:700;margin:0}
+.app-title p{color:var(--muted);font-size:.83rem;margin:.2rem 0 0}
+.file-list-scroll{max-height:180px;overflow-y:auto}
+hr.sv-hr{border-color:var(--border);margin:.8rem 0}
+"
 
 # -- UI ------------------------------------------------------------------------
 ui <- fluidPage(
   useShinyjs(),
   tags$head(
     tags$script(src = "audio_player.js"),
-    tags$link(rel = "icon", type = "image/jpeg", href = "brand/osa_monogram_blue.jpg"),
     tags$style(HTML(css))
   ),
-  title = "SpectraReel | Ocean Science Analytics",
-  theme = bs_theme(
-    version = 5,
-    bg = "#F3F7FA", fg = "#1B2B3A",
-    primary = "#2D5DA8", secondary = "#3A74A6", info = "#3796CC",
-    success = "#2E9E6B", danger = "#C2410C",
-    base_font    = font_google("Inter"),
-    heading_font = font_google("Questrial")   # close match to the OSA logotype
-  ),
+  theme = bs_theme(bootswatch="darkly", base_font=font_google("Inter")),
 
-  # -- Header -----------------------------------------------------------------
-  div(class = "osa-header",
-      div(class = "osa-header-inner",
-          tags$img(src = "osa_monogram_white.png", alt = "Ocean Science Analytics"),
-          div(class = "osa-divider"),
-          div(
-            h2(class = "osa-title", "SpectraReel"),
-            p(class = "osa-sub", "Preview and export audio files as MP4 spectrogram videos")
+  div(style="padding:1.2rem 0 .8rem",
+      div(class="app-title",
+          div(style="display:flex;align-items:center;gap:.85rem",
+              tags$img(src = "white_square_OSA_med.jpg", style = "height:52px;..."),
+              div(
+                h2(HTML("SpectraReel")),
+                p("Preview and download audio files to MP4")
+              )
           )
-      ),
-      header_wave
+      )
   ),
 
   sidebarLayout(
@@ -236,7 +167,7 @@ ui <- fluidPage(
           buttonLabel="Browse..."),
 
       tags$hr(class="sv-hr"),
-      div(class="sec-head", span(class="ico", icon("wave-square")), "FFT / Spectrogram"),
+      div(class="sec-head", HTML("&#127897; FFT / SPECTROGRAM")),
 
       selectInput("fft_size","FFT Window Size",
         choices=c("64"=64,"128"=128,"256"=256,"512"=512,
@@ -275,17 +206,21 @@ ui <- fluidPage(
       ),
 
       tags$hr(class="sv-hr"),
-      div(class="sec-head", span(class="ico", icon("volume-high")), "Amplitude"),
+      div(class="sec-head", HTML("&#128266; AMPLITUDE")),
       sliderInput("db_range","dB Range",-120,0,c(-80,0),step=5),
       sliderInput("gamma","Gamma (brighten low values)",0.2,3.0,1.0,step=0.1),
 
       tags$hr(class="sv-hr"),
-      div(class="sec-head", span(class="ico", icon("water")), "Smoothing"),
+      div(class="sec-head", HTML("&#127327; SMOOTHING")),
 
       fluidRow(
         column(6,
-          prettySwitch("smooth_on", label = "Apply smoothing",
-            value = FALSE, status = "primary", fill = TRUE)
+          prettyToggle("smooth_on",
+            label_on  = "Smoothing ON",
+            label_off = "Smoothing OFF",
+            value     = FALSE,
+            status_on = "success", status_off = "default",
+            icon_on   = icon("check"), icon_off = icon("times"))
         ),
         column(6,
           conditionalPanel("input.smooth_on == true",
@@ -321,25 +256,25 @@ ui <- fluidPage(
               min=1, max=15, value=2, step=1, ticks=FALSE)
           )
         ),
-        tags$small(class="hint",
+        tags$small(style="color:#71717a;font-size:.7rem;line-height:1.4",
           "sigma = Gaussian std dev in spectrogram bins. ",
           "Higher = more blur. Set one to 1 to smooth only the other axis.")
       ),
 
       tags$hr(class="sv-hr"),
-      div(class="sec-head", span(class="ico", icon("palette")), "Visual Style"),
+      div(class="sec-head", HTML("&#127912; VISUAL STYLE")),
 
       selectInput("color_scheme","Color Palette",
-        choices=c("OSA Ocean *"="osa","Magma"="magma","Viridis"="viridis","Plasma"="plasma",
+        choices=c("Magma *"="magma","Viridis"="viridis","Plasma"="plasma",
                   "Inferno"="inferno","Cividis"="cividis","Hot"="hot",
                   "Cool Blue"="cool","Deep Blue->White"="deepblue",
                   "Green Phosphor"="phosphor"),
-        selected="osa"),
+        selected="magma"),
 
       fluidRow(
         column(6,
           selectInput("bg_color","Background",
-            choices=c("Black"="#000000","OSA Deep Navy"="#0B1F3A","Deep Slate"="#0f172a",
+            choices=c("Black"="#000000","Deep Slate"="#0f172a",
                       "Dark Charcoal"="#1a1a2e","White"="#ffffff"),
             selected="#000000")
         ),
@@ -354,9 +289,10 @@ ui <- fluidPage(
       fluidRow(
         column(6,
           tags$div(
-            tags$label("Playhead Color", class="control-label", style="display:block;margin-bottom:.5rem"),
-            tags$div(class="ph-row",
-              tags$input(id="bar_color_swatch", type="color", value="#00ff88"),
+            tags$label("Playhead Color", style="display:block;color:#a1a1aa!important;font-size:.79rem!important;font-weight:500!important;margin-bottom:4px"),
+            tags$div(style="display:flex;align-items:center;gap:6px",
+              tags$input(id="bar_color_swatch", type="color", value="#00ff88",
+                style="width:36px;height:32px;padding:2px;border-radius:6px;border:1px solid #3f3f46;background:#27272a;cursor:pointer"),
               textInput("bar_color",NULL,value="#00ff88",placeholder="#00ff88",width="100%")
             ),
             tags$script(HTML("
@@ -384,15 +320,32 @@ ui <- fluidPage(
         selected=c("title")),
 
       tags$hr(class="sv-hr"),
-      div(class="sec-head", span(class="ico", icon("film")), "Output (MP4)"),
+      # div(class="sec-head", HTML("&#127909; OUTPUT (MP4)")),
+      # fluidRow(
+      #   column(6, numericInput("vid_width", "Width (px)", 1280,min=640,max=3840,step=64)),
+      #   column(6, numericInput("vid_height","Height (px)", 720,min=360,max=2160,step=64))
+      # ),
+      div(class="sec-head", HTML("&#127909; OUTPUT (MP4)")),
+      selectInput("aspect_preset", "Aspect Ratio Preset",
+                  choices = c(
+                    "Custom"                        = "custom",
+                    "9:16 — Instagram/TikTok/Reels" = "9x16",
+                    "1:1 — Square (Instagram Feed)" = "1x1",
+                    "4:5 — Instagram Portrait"      = "4x5",
+                    "16:9 — Landscape / YouTube"    = "16x9",
+                    "4:3 — Classic Landscape"       = "4x3"
+                  ),
+                  selected = "custom"
+      ),
       fluidRow(
-        column(6, numericInput("vid_width", "Width (px)", 1280,min=640,max=3840,step=64)),
-        column(6, numericInput("vid_height","Height (px)", 720,min=360,max=2160,step=64))
+        column(6, numericInput("vid_width", "Width (px)", 1280, min=64, max=3840, step=2)),
+        column(6, numericInput("vid_height","Height (px)",  720, min=64, max=2160, step=2))
       ),
       sliderInput("framerate","Framerate (fps)",5,60,25,step=5),
 
       tags$hr(class="sv-hr"),
-      actionButton("btn_render",HTML("&#9654;&nbsp; Export MP4"), class="btn btn-render")
+      actionButton("btn_render",HTML("&#9654;  Export MP4"),        class="btn btn-render"),
+
     ),
 
     # -- MAIN PANEL ------------------------------------------------------------
@@ -408,7 +361,7 @@ ui <- fluidPage(
 
       # -- LIVE PREVIEW CARD --------------------------------------------------
       div(class="sv-card",
-        div(class="sec-head", span(class="ico", icon("eye")), "Live Preview"),
+        div(class="sec-head", HTML("&#128065; LIVE PREVIEW")),
 
         # Spectrogram plot
         div(class="preview-wrap",
@@ -443,7 +396,7 @@ ui <- fluidPage(
 
       # Settings summary
       div(class="sv-card",
-        div(class="sec-head", span(class="ico", icon("sliders")), "Settings Summary"),
+        div(class="sec-head","SETTINGS SUMMARY"),
         verbatimTextOutput("settings_summary")
       ),
 
@@ -454,7 +407,7 @@ ui <- fluidPage(
         div(id="sv-box-rendering",
           style="display:none;flex-direction:column;align-items:center;gap:1rem;width:100%",
           div(class="sv-box-spinner"),
-          div(class="sv-box-title", style="color:#2D5DA8", "Rendering MP4 File"),
+          div(class="sv-box-title", style="color:#a5b4fc", "Rendering MP4 File"),
           div(class="sv-box-pct", id="sv-box-pct-text", "0%"),
           div(class="sv-box-progress",
             div(class="sv-box-progress-bar", id="sv-box-prog-bar")
@@ -475,16 +428,12 @@ ui <- fluidPage(
         div(id="sv-box-error",
           style="display:none;flex-direction:column;align-items:center;gap:.8rem;width:100%",
           div(style="font-size:2.5rem", HTML("&#9888;")),
-          div(class="sv-box-title", style="color:#B42318", "Render Failed"),
+          div(class="sv-box-title", style="color:#fca5a5", "Render Failed"),
           uiOutput("error_msg_ui")
         )
       )
     )
-  ),
-
-  # -- Footer -----------------------------------------------------------------
-  div(class = "osa-footer", footer_wave,
-      HTML("SpectraReel &middot; <a href='https://oceanscienceanalytics.com' target='_blank'>Ocean Science Analytics</a>"))
+  )
 )
 
 # -- SERVER --------------------------------------------------------------------
@@ -538,6 +487,20 @@ server <- function(input, output, session) {
       smooth_t      = (if(isTRUE(input$smooth_on)) as.integer(input$smooth_t) else 1L),
       smooth_f      = (if(isTRUE(input$smooth_on)) as.integer(input$smooth_f) else 1L)
     )
+  })
+  
+  # Reactive if custom size is chosen
+  observeEvent(input$aspect_preset, {
+    req(input$aspect_preset != "custom")
+    dims <- switch(input$aspect_preset,
+                   "9x16" = c(1080, 1920),
+                   "1x1"  = c(1080, 1080),
+                   "4x5"  = c(1080, 1350),
+                   "16x9" = c(1920, 1080),
+                   "4x3"  = c(1440, 1080)
+    )
+    updateNumericInput(session, "vid_width",  value = dims[1])
+    updateNumericInput(session, "vid_height", value = dims[2])
   })
 
   # -- Reactive: compute spectrogram (expensive -- only on file/FFT changes) ---
@@ -729,7 +692,7 @@ server <- function(input, output, session) {
     req(input$smooth_on, input$smooth_type, input$smooth_t, input$smooth_f)
     dom <- if(!is.null(input$smooth_domain)) input$smooth_domain else "linear"
     tags$div(style="margin-top:1.55rem",
-      tags$span(style="color:#2E9E6B;font-size:.72rem;font-weight:700",
+      tags$span(style="color:#22c55e;font-size:.72rem;font-weight:700",
         sprintf("st=%d sf=%d [%s]",
                 as.integer(input$smooth_t),
                 as.integer(input$smooth_f),
@@ -744,10 +707,10 @@ server <- function(input, output, session) {
     hop  <- round(fft * frac)
     ovlp <- round((1 - frac) * 100)
     tags$div(
-      tags$span(style="color:#2D5DA8;font-size:.72rem;font-weight:700",
+      tags$span(style="color:#06b6d4;font-size:.72rem;font-weight:700",
                 sprintf("Hop = %d samp", hop)),
       tags$br(),
-      tags$span(style="color:#5F7385;font-size:.68rem",
+      tags$span(style="color:#71717a;font-size:.68rem",
                 sprintf("(%d%% overlap)", ovlp))
     )
   })
@@ -782,7 +745,7 @@ server <- function(input, output, session) {
       par(bg=s$bg_color, mar=c(0,0,0,0))
       plot.new()
       text(.5,.5,"Upload an audio file to see the preview",
-           col="#99D0E5", cex=1.1, family="sans")
+           col="#71717a", cex=1.1, family="sans")
       return(invisible())
     }
 
@@ -848,7 +811,7 @@ server <- function(input, output, session) {
 
   output$file_info_text <- renderUI({
     if(!is.null(input$audio_single))
-      tags$small(style="color:#5F7385",
+      tags$small(style="color:#71717a",
         input$audio_single$name," (",
         round(input$audio_single$size/1024,1)," KB",
         (if(rv$duration>0) paste0(" · ",round(rv$duration,2),"s") else ""),
@@ -953,7 +916,7 @@ Options      : %s",
 
   output$error_msg_ui <- renderUI({
     req(rv$error_msg)
-    tags$p(style="color:#B42318;font-size:.75rem;text-align:center;word-break:break-word",
+    tags$p(style="color:#fca5a5;font-size:.75rem;text-align:center;word-break:break-word",
            rv$error_msg)
   })
 
