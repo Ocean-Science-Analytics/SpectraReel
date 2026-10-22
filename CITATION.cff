@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "SpectraReel"
+abstract: "An R Shiny app that turns audio files into customizable MP4 spectrogram videos with a scrolling playhead, for sharing sounds."
+authors:
+  - name: "Ocean Science Analytics, LLC"
+repository-code: "https://github.com/Ocean-Science-Analytics/SpectraReel"
+url: "https://www.oceanscienceanalytics.com/bioacoustic-resources"
+license: Apache-2.0
+version: "1.0"
+date-released: 2026-10-15
+keywords:
+  - "bioacoustics"
+  - "spectrogram"
+  - "audio visualization"
+  - "video"
+  - "R"
+  - "Shiny"
