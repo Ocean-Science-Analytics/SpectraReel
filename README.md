@@ -95,3 +95,15 @@ framerate / video resolution in settings.
 
 **Stereo files** — The app takes the left channel for spectral analysis
 but mixes both channels into the audio track of the MP4.
+
+## How to cite
+
+If you use SpectraReel in your work, please cite it:
+
+> Ocean Science Analytics. (2026). *SpectraReel* [Computer software]. https://github.com/Ocean-Science-Analytics/SpectraReel
+
+You can also click **Cite this repository** in the right-hand sidebar of this page to copy the citation in APA or BibTeX format.
+
+## License
+
+SpectraReel is © 2026 Ocean Science Analytics, LLC and is licensed under the [Apache License 2.0](LICENSE). You're free to use, modify and share it, including for commercial purposes, as long as you keep the copyright and license notices and state any changes you make. The license does not grant permission to use the Ocean Science Analytics name or logo.
